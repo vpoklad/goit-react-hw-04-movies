@@ -1,24 +1,21 @@
 // import './App.css';
 
 import { useEffect, useState } from 'react';
-import { Route } from 'react-router';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { Navbar } from './components/Navbar/Navbar';
-import TrendGallery from './components/TrendGallery/TrendGallery';
-import * as tmdbApi from './services/tmdbAPI';
+import HomePage from './viewes/HomePage';
+import MoviesPage from './viewes/MoviesPage';
 
 function App() {
-  const [trends, setTrends] = useState(null);
-  useEffect(() => {
-    tmdbApi.getTrend().then(r => setTrends(r.results));
-  }, []);
-
-  console.log(trends);
-
   return (
-    <div className="container">
+    <>
       <Navbar />
-      {trends && <TrendGallery trends={trends} />}
-    </div>
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/movies" component={MoviesPage} />
+        <Redirect to="/" />
+      </Switch>
+    </>
   );
 }
 

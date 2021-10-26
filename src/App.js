@@ -1,21 +1,25 @@
 // import './App.css';
 
-import { Component } from 'react/cjs/react.production.min';
+import { useEffect, useState } from 'react';
+import { Route } from 'react-router';
+import { Navbar } from './components/Navbar/Navbar';
+import TrendGallery from './components/TrendGallery/TrendGallery';
+import * as tmdbApi from './services/tmdbAPI';
 
-class App extends Component {
-  state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  };
+function App() {
+  const [trends, setTrends] = useState(null);
+  useEffect(() => {
+    tmdbApi.getTrend().then(r => setTrends(r.results));
+  }, []);
 
-  render() {
-    return (
-      <div className="app">
-        <h1>Hello</h1>
-      </div>
-    );
-  }
+  console.log(trends);
+
+  return (
+    <div className="container">
+      <Navbar />
+      {trends && <TrendGallery trends={trends} />}
+    </div>
+  );
 }
 
 export default App;

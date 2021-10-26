@@ -8,9 +8,10 @@
 }
 
 .link {
-  color: rgb(245, 159, 0);
+  color: #8b8b8b;
   text-decoration: none;
   font-size: 20px;
+  margin-bottom: 3px;
 }
 .link:not(:last-child) {
   margin-right: 30px;
@@ -18,15 +19,16 @@
 .activeLink {
   position: relative;
   composes: link;
-  color: cornflowerblue;
+  color: #ff3d00;
 }
 
 .activeLink::after {
   content: '';
   position: absolute;
+  left: 0;
   display: block;
   width: 100%;
   height: 3px;
-  background-color: rgb(245, 159, 0);
+  background-color: #ff3d00;
   border-radius: 2px;
 }

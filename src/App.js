@@ -4,26 +4,30 @@ import { lazy, Suspense } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Loader from './components/Loader/Loader';
-// import HomePage from './viewes/HomePage';
-// import MoviesPage from './viewes/MoviesPage';
+// import HomePage from './views/HomePage';
+// import MoviesPage from './views/MoviesPage';
 
 const HomePage = lazy(() =>
-  import('./viewes/HomePage' /* webpackChunkName: "home-page" */),
+  import('./views/HomePage' /* webpackChunkName: "home-page" */),
 );
 const MoviesPage = lazy(() =>
-  import('./viewes/MoviesPage' /* webpackChunkName: "MoviesPage" */),
+  import('./views/MoviesPage' /* webpackChunkName: "MoviesPage" */),
 );
+const MovieDetailsPage = lazy(() =>
+  import('./views/MovieDetailsPage' /* webpackChunkName: "MoviesPage" */),
+);
+
 function App() {
   return (
     <>
       {/* <Loader/> */}
       <Navbar />
-      <Suspense fallback={<p>Loading</p>}>
+      <Suspense fallback={<Loader />}>
         <Switch>
-          <Suspense fallback={<Loader />}>
-            <Route exact path="/" component={HomePage} />
-          </Suspense>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/movies/:type/:movieId" component={MovieDetailsPage} />
           <Route path="/movies" component={MoviesPage} />
+
           <Redirect to="/" />
         </Switch>
       </Suspense>

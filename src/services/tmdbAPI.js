@@ -7,3 +7,18 @@ export function getTrend() {
     .get(`https://api.themoviedb.org/3/trending/all/week?api_key=${API_KEY}`)
     .then(r => r.data);
 }
+export function getInfoById(type, id) {
+  return axios
+    .get(
+      `https://api.themoviedb.org/3/${type}/${id}?api_key=${API_KEY}&language=en-US`,
+    )
+    .then(r => r.data);
+}
+
+export function getInfoByQuerryId(query) {
+  return axios
+    .get(
+      `https://api.themoviedb.org/3/search/multi?query=${query}&api_key=${API_KEY}`,
+    )
+    .then(r => r.data);
+}

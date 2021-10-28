@@ -11,7 +11,7 @@ export default function HomePage() {
   useEffect(() => {
     tmdbApi.getTrend().then(r => setTrends(r.results));
   }, []);
-
+  console.log(trends);
   return (
     <>
       <h1 className="pageTitle">This week trends</h1>

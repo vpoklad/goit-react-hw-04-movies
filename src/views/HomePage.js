@@ -9,12 +9,13 @@ export default function HomePage() {
   // const [status, setStatus] = useState();
 
   useEffect(() => {
-    tmdbApi.getTrend().then(r => setTrends(r.results));
+    tmdbApi.getTrend().then(r => setTrends(r.results.sort((a,b) => a.vote_average > b.vote_average)));
   }, []);
   console.log(trends);
+  
   return (
     <>
-      <h1 className="pageTitle">This week trends</h1>
+      <h1 className="pageTitle">TOP 20 this week trends</h1>
       {trends && <TrendGallery trends={trends} />}
     </>
   );

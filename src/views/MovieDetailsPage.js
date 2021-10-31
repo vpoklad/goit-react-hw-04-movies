@@ -20,9 +20,7 @@ export default function MovieDetailsPage() {
     tmdbApi.getInfoById(type, movieId).then(result => setMovie(result));
   }, [movieId, type]);
 
-  // if (movie) {
-  //   console.log('itemloction',location.state.from);
-  // }
+  
   const onBackClick = () => {
   history.push(location?.state?.from?.location ?? "/movies")
 }
@@ -31,13 +29,13 @@ export default function MovieDetailsPage() {
       <button type="button" onClick={onBackClick}>{location?.state?.from?.label ?? "Back to movies search"} </button>
       {movie && (
         <>
-          {movie.title ? (<h1>{movie.title}</h1>) : (<h1>{movie.original_name}</h1>)}
-          <h2>{type}</h2>
           <img
             className=""
             src={movie.poster_path ? `${base_img_url}${movie.poster_path}` : placeholder}
             alt={movie.title}
           />
+          {movie.title ? (<h1>{movie.title}</h1>) : (<h1>{movie.original_name}</h1>)}
+          <h2>{type}</h2>
 
           <h3>Overview</h3>
           <p>{movie.overview}</p>

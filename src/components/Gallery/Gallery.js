@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types'
 import GalleryItem from './GalleryItem';
 import s from './TrendGallery.module.css';
-export default function TrendGallery({ results }) {
+export default function Gallery({ results }) {
   return (
     <div className="container">
       <ul className={s.gallery}>
@@ -11,4 +12,7 @@ export default function TrendGallery({ results }) {
       </ul>
     </div>
   );
+}
+Gallery.propTypes = {
+  results: PropTypes.array,
 }

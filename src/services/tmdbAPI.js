@@ -22,3 +22,18 @@ export function getInfoByQuerryId(query) {
     )
     .then(r => r.data);
 }
+
+export function getCreditsById(type,id) {
+  return axios
+    .get(
+      `https://api.themoviedb.org/3/{type}/{id}/credits?api_key=${API_KEY}`,
+    )
+    .then(r => r.data);
+}
+export function getRewievsById(type,id) {
+  return axios
+    .get(
+      `https://api.themoviedb.org/3/{type}/{id}/reviews?api_key=${API_KEY}`,
+    )
+    .then(r => r.data);
+}

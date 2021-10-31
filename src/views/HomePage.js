@@ -9,9 +9,14 @@ export default function HomePage() {
   // const [status, setStatus] = useState();
 
   useEffect(() => {
-    tmdbApi.getTrend().then(r => setTrends(r.results.sort((a,b) => a.vote_average > b.vote_average)));
+    tmdbApi.getTrend().then(r => {
+
+      const sortedResult = [...r.results].sort((a, b) => a.vote_average < b.vote_average ? 1 : -1);
+      setTrends(sortedResult);
+    })
+      
   }, []);
-  console.log(trends);
+  console.log( 'sorted', trends);
   
   return (
     <>

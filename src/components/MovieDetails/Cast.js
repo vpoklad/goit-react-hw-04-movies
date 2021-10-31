@@ -19,24 +19,31 @@ export default function Cast() {
     if (status === 'pending') {
         return(<p>Loading...</p>)
     }
+    
     if (status === 'success') {
-        return (        
-        <ul>
-            {cast.map(el => { return(
-                <li key={el.id}>
-                    <img src={
-                  el.profile_path ? `https://image.tmdb.org/t/p/w185/${el.profile_path}`
-                    : placeholder
-                } alt={el.name} />
-                            <span>{el.name}</span> as 
+        if (cast.length < 1) {
+            return (<p>No cast information found</p>)
+        }
+    
+        return (
+            <ul>
+                {cast.map(el => {
+                    return (
+                        <li key={el.id}>
+                            <img src={
+                                el.profile_path ? `https://image.tmdb.org/t/p/w185/${el.profile_path}`
+                                    : placeholder
+                            } alt={el.name} />
+                            <span>{el.name}</span> as
                             <span> {el.character}</span>
                             
                         </li>)
-                    })
-                }  
-        </ul>
-        )      
-   }
+                })
+                }
+            </ul>
+        )
+    }
+};
             
         
     
@@ -48,4 +55,4 @@ export default function Cast() {
     
     
     
-};
+

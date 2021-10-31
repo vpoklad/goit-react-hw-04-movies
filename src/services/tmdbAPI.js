@@ -15,7 +15,7 @@ export function getInfoById(type, id) {
     .then(r => r.data);
 }
 
-export function getInfoByQuerryId(query) {
+export function getInfoByQuerry(query) {
   return axios
     .get(
       `https://api.themoviedb.org/3/search/multi?query=${query}&api_key=${API_KEY}`,

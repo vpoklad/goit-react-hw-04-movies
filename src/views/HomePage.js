@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 // import Loader from '../components/Loader/Loader'
 
-import TrendGallery from '../components/TrendGallery/TrendGallery';
+import Gallery from '../components/Gallery/Gallery';
 import * as tmdbApi from '../services/tmdbAPI';
 
 export default function HomePage() {
@@ -21,7 +21,7 @@ export default function HomePage() {
   return (
     <>
       <h1 className="pageTitle">TOP 20 this week trends</h1>
-      {trends && <TrendGallery trends={trends} />}
+      {trends && <Gallery results={trends} />}
     </>
   );
 }

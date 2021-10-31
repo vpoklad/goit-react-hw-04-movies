@@ -21,7 +21,7 @@ export default function TrendGalleryItem({ item }) {
 
         <img
           className={s.galleryItemImg}
-          src={item.poster_path ? (`${base_img_url}${item.poster_path}`) : ({placeholder})}
+          src={item.poster_path ? (`${base_img_url}${item.poster_path}`) : placeholder}
           alt={item.title}
         />
       </li>

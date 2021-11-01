@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import s from './MovieDetails.module.css'
 import * as tmdbApi from '../../services/tmdbAPI';
 import placeholder from '../../img/portrait_placeholder.jpg'
 
@@ -26,7 +27,7 @@ export default function Cast() {
         }
     
         return (
-            <ul>
+            <ul className={s.cast}>
                 {cast.map(el => {
                     return (
                         <li key={el.id}>
@@ -34,8 +35,8 @@ export default function Cast() {
                                 el.profile_path ? `https://image.tmdb.org/t/p/w185/${el.profile_path}`
                                     : placeholder
                             } alt={el.name} />
-                            <span>{el.name}</span> as
-                            <span> {el.character}</span>
+                            <span className={s.castName}>{el.name} </span> as 
+                            <p> {el.character}</p>
                             
                         </li>)
                 })

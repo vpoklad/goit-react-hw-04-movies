@@ -1,12 +1,12 @@
 import { useParams, useHistory, useLocation, NavLink, Route, useRouteMatch } from 'react-router-dom';
 import * as tmdbApi from '../services/tmdbAPI';
 import { useEffect, useState } from 'react';
-import placeholder from '../img/movie_poster_placeholder.jpg'
+import s from '../components/Navbar/Navbar.module.css';
+
+import MovieDetails from '../components/MovieDetails/MovieDetails'
 
 import Cast from '../components/MovieDetails/Cast';
 import Review from '../components/MovieDetails/Review';
-
-const base_img_url = 'https://image.tmdb.org/t/p/w342/';
 
 
 
@@ -25,45 +25,20 @@ export default function MovieDetailsPage() {
   history.push(location?.state?.from?.location ?? "/movies")
 }
   return (
-    <>
-      <button type="button" onClick={onBackClick}>{location?.state?.from?.label ?? "Back to movies search"} </button>
-      {movie && (
-        <>
-          <img
-            className=""
-            src={movie.poster_path ? `${base_img_url}${movie.poster_path}` : placeholder}
-            alt={movie.title}
-          />
-          {movie.title ? (<h1>{movie.title}</h1>) : (<h1>{movie.original_name}</h1>)}
-          <h2>{type}</h2>
+    <div className="container">
 
-          <h3>Overview</h3>
-          <p>{movie.overview}</p>
-          <h3>Genres</h3>
-          <ul>
-            {movie.genres.map(el => (
-              <li key={el.id}> {el.name}</li>
-            ))}
-          </ul>{
-            movie.budget && (
-              <>
-              <h3>Budget</h3>
-                <p>{`$ ${movie.budget}`}</p>
-                </>
-              
-            )
+      <button type="button" onClick={onBackClick}>{location?.state?.from?.label ?? "Back to movies search"} </button>
+      {movie && <MovieDetails movie={movie} type={type} />}
+      <NavLink exact
+        to={{
+          pathname: `${url}/cast`,
+          state: {
+            from: {
+              location: location.state.from.location,
+              label: 'Back to results',
+            },
           }
-          <h3>Vote average: {movie.vote_average}</h3>
-          <NavLink exact
-          to={{
-      pathname: `${url}/cast`,
-      state: {
-        from: {
-          location:location.state.from.location,
-          label: 'Back to results',
-        },
-      }
-    }}>Cast</NavLink>
+        }} className={s.link} activeClassName={s.activeLink}>Cast</NavLink>
           <NavLink exact
           to={{
       pathname: `${url}/reviews`,
@@ -74,12 +49,15 @@ export default function MovieDetailsPage() {
         },
       }
     }}
-          >Reviews</NavLink>
+          className={s.link} activeClassName={s.activeLink}>Reviews</NavLink>
 
           <Route path={`${path}/cast`}><Cast/></Route>
           <Route path={`${path}/reviews`}><Review/></Route>
-        </>
-      )}
-    </>
-  );
-}
+    </div>
+        
+  )
+};
+
+    
+  
+

@@ -4,6 +4,7 @@ import { lazy, Suspense } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Loader from './components/Loader/Loader';
+import ToTopButton from './components/Buttons/ToTopButton';
 // import HomePage from './views/HomePage';
 // import MoviesPage from './views/MoviesPage';
 
@@ -31,6 +32,7 @@ function App() {
           <Redirect to="/" />
         </Switch>
       </Suspense>
+      <ToTopButton/>
     </>
   );
 }

@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import * as tmdbApi from '../../services/tmdbAPI';
 import ShowMore from 'react-simple-show-more';
+import s from './MovieDetails.module.css'
 
 
 export default function Review() {
@@ -26,10 +27,10 @@ export default function Review() {
             {reviews.length === 0 && "No review added yet."}
             
         </p>
-        <ul>
+        <ul >
           {reviews.map(review => (
-            <li key={review.id} >
-              <h2 >Author: {review.author}</h2>
+            <li key={review.id} className={s.reviewItem}>
+              <h2 className={s.reviewAuthor}>Author: {review.author}</h2>
               <p>
                 <ShowMore
                   text={review.content}
@@ -39,7 +40,7 @@ export default function Review() {
                   style={{
                     cursor: 'pointer',
                     color: '#ff3d00',
-                    fontWeight: 'bold',
+                    fontWeight: 'normal',
                   }}
                 />
               </p>

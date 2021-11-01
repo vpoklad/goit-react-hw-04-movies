@@ -21,6 +21,9 @@ p {
   padding: 0;
 }
 
+#root {
+  position: relative;
+}
 .ImageGallery {
   display: grid;
   max-width: calc(100vw - 48px);

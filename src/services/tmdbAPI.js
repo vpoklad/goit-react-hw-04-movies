@@ -15,10 +15,10 @@ export function getInfoById(type, id) {
     .then(r => r.data);
 }
 
-export function getInfoByQuerry(query) {
+export function getInfoByQuerry(query, page = 1) {
   return axios
     .get(
-      `https://api.themoviedb.org/3/search/multi?query=${query}&api_key=${API_KEY}`,
+      `https://api.themoviedb.org/3/search/multi?query=${query}&page=${page}&api_key=${API_KEY}`,
     )
     .then(r => r.data);
 }

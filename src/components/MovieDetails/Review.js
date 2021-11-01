@@ -15,7 +15,7 @@ export default function Review() {
             .then(r => setReviews(r.results)).finally(setStatus('success'));
         
     }, [movieId, type])
-    console.log(reviews);
+    
     
         
     if (status === 'pending') {

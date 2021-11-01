@@ -27,7 +27,7 @@ export default function MovieDetailsPage() {
   return (
     <div className="container">
 
-      <button type="button" onClick={onBackClick}>{location?.state?.from?.label ?? "Back to movies search"} </button>
+      <button className = "btn_back" type="button" onClick={onBackClick}>{location?.state?.from?.label ?? "Back to movies search"} </button>
       {movie && <MovieDetails movie={movie} type={type} />}
       <NavLink exact
         to={{

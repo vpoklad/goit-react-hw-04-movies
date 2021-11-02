@@ -18,7 +18,7 @@ export default function MoviesPage() {
   const [query, setQuery] = useState(null);
   const [page, setPage] = useState(1);
   const [status, setStatus] = useState('intial')
-  const [urlQuery, setUrlQuery] = useState(()=>new URLSearchParams(location.search).get("query"));
+  const [urlQuery] = useState(()=>new URLSearchParams(location.search).get("query"));
   
 const allQUery = query || urlQuery
 
@@ -40,7 +40,7 @@ const allQUery = query || urlQuery
   }, [allQUery])
   
   useEffect(() => {
-    if (page !== 1) {
+    if (page !== 1 ) {
       tmdbApi.getInfoByQuerry(allQUery, page)
       .then(r => setResults((prev) => [...prev, ...r.results.filter((el) => el.media_type === "movie" || el.media_type === "tv")]))
    .finally(setStatus("success"))

@@ -8,7 +8,7 @@ export default function Gallery({ results }) {
         {results.map(item => (
           <GalleryItem key={item.id} item={item} />
         ))}
-        ;
+        
       </ul>
     </div>
   );

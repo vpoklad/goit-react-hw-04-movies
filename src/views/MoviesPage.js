@@ -42,7 +42,13 @@ const allQUery = query || urlQuery
   useEffect(() => {
     if (page !== 1 ) {
       tmdbApi.getInfoByQuerry(allQUery, page)
-      .then(r => setResults((prev) => [...prev, ...r.results.filter((el) => el.media_type === "movie" || el.media_type === "tv")]))
+        .then(r => {
+          setResults((prev) => [...prev, ...r.results.filter((el) => el.media_type === "movie" || el.media_type === "tv")])
+        window.scrollTo({
+            top: document.documentElement.scrollHeight,
+            behavior: 'smooth',
+          })}
+        )
    .finally(setStatus("success"))
     }
    

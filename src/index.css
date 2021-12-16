@@ -27,7 +27,7 @@ p {
 .ImageGallery {
   display: grid;
   max-width: calc(100vw - 48px);
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   grid-gap: 16px;
   margin-top: 0;
   margin-bottom: 0;
@@ -44,10 +44,15 @@ img {
 }
 
 .container {
-  width: 1400px;
+  width: 100%;
   padding-left: 32px;
   padding-right: 32px;
   margin: 0 auto;
+}
+@media screen and (min-width: 1400px) {
+  .container {
+    width: 1400px;
+  }
 }
 .pageTitle {
   text-align: center;

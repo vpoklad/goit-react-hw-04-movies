@@ -1,16 +1,17 @@
 .wraper {
-  display: flex;
   padding-top: 30px;
   padding-bottom: 30px;
-  border-bottom: 1px solid black;
   box-shadow: 0 4px 2px 0px rgb(0 0 0 / 20%);
   margin-bottom: 30px;
 }
 
-.poster {
-  margin-right: 30px;
+.thumb {
+  margin: 0 auto;
+  max-width: 342px;
 }
-
+.meta {
+  width: calc(80% - 15px);
+}
 .link {
   color: #8b8b8b;
   text-decoration: none;
@@ -45,7 +46,7 @@
   padding: 0;
   display: grid;
   max-width: calc(100vw - 96px);
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(258px, 1fr));
   grid-gap: 16px;
 }
 .castName {
@@ -59,4 +60,13 @@
 .reviewAuthor {
   font-size: 16px;
   font-weight: bold;
+}
+@media screen and (min-width: 768px) {
+  .wraper {
+    display: flex;
+    justify-content: space-between;
+  }
+  .thumb {
+    margin-right: 30px;
+  }
 }

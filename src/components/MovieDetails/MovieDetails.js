@@ -8,13 +8,16 @@ export default function MovieDetails({ movie, type }) {
   return (
      
       
-        <div className={s.wraper}>       
-       
+    <div className={s.wraper}>
+      <div className={s.thumb}>
             <img
             className={s.poster}
             src={movie.poster_path ? `${base_img_url}${movie.poster_path}` : placeholder}
             alt={movie.title}
         />
+        
+      </div>
+       
         
         <div className={s.meta}>
 

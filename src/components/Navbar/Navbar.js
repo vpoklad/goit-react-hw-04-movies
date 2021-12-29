@@ -10,6 +10,13 @@ export default function Navbar() {
         <NavLink to="/movies" className={s.link} activeClassName={s.activeLink}>
           Movies
         </NavLink>
+        <NavLink
+          to="/persons"
+          className={s.link}
+          activeClassName={s.activeLink}
+        >
+          Persons
+        </NavLink>
       </div>
     </nav>
   );

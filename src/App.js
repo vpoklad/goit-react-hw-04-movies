@@ -17,6 +17,12 @@ const MoviesPage = lazy(() =>
 const MovieDetailsPage = lazy(() =>
   import('./views/MovieDetailsPage' /* webpackChunkName: "MoviesPage" */),
 );
+const PersonsPage = lazy(() =>
+  import('./views/PersonsPage' /* webpackChunkName: "PersonsPage" */),
+);
+const PersonDetailsPage = lazy(() =>
+  import('./views/PersonDetailsPage' /* webpackChunkName: "PersonsPage" */),
+);
 
 function App() {
   return (
@@ -28,11 +34,12 @@ function App() {
           <Route exact path="/" component={HomePage} />
           <Route path="/movies/:type/:movieId" component={MovieDetailsPage} />
           <Route path="/movies" component={MoviesPage} />
-
+          <Route path="/persons/:personId" component={PersonDetailsPage} />
+          <Route path="/persons" component={PersonsPage} />
           <Redirect to="/" />
         </Switch>
       </Suspense>
-      <ToTopButton/>
+      <ToTopButton />
     </>
   );
 }

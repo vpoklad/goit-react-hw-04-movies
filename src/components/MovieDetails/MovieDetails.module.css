@@ -1,7 +1,7 @@
 .wraper {
   padding-top: 30px;
   padding-bottom: 30px;
-  box-shadow: 0 4px 2px 0px rgb(0 0 0 / 20%);
+  border-bottom: 1px solid #8b8b8b;
   margin-bottom: 30px;
 }
 
@@ -48,6 +48,11 @@
   max-width: calc(100vw - 96px);
   grid-template-columns: repeat(auto-fill, minmax(258px, 1fr));
   grid-gap: 16px;
+}
+.castImg {
+  max-width: 185px;
+  margin: 0 auto;
+  margin-bottom: 10px;
 }
 .castName {
   color: #ff3d00;

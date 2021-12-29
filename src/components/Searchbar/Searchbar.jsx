@@ -5,7 +5,7 @@ import s from './Searchbar.module.css'
 
  
 
-export default function Searchbar ({ onSubmit }) {
+export default function Searchbar ({ onSubmit, placeHolder }) {
     
     const [searchInput, setSearchInput] = useState("");
     
@@ -40,7 +40,7 @@ export default function Searchbar ({ onSubmit }) {
           type="search"
           autoComplete="off"
           autoFocus
-          placeholder="Search movies & TV-shows"
+          placeholder={placeHolder}
           onChange={handlerChange}
         />
       </form>

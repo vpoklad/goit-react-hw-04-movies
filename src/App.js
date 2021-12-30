@@ -2,9 +2,11 @@
 
 import { lazy, Suspense } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import Navbar from './components/Navbar/Navbar';
 import Loader from './components/Loader/Loader';
 import ToTopButton from './components/Buttons/ToTopButton';
+
 // import HomePage from './views/HomePage';
 // import MoviesPage from './views/MoviesPage';
 
@@ -27,7 +29,7 @@ const PersonDetailsPage = lazy(() =>
 function App() {
   return (
     <>
-      {/* <Loader/> */}
+      <Toaster />
       <Navbar />
       <Suspense fallback={<Loader />}>
         <Switch>

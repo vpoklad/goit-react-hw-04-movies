@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 import s from './Searchbar.module.css'
+import {toast} from 'react-hot-toast'
 
 
  
@@ -18,7 +19,7 @@ export default function Searchbar ({ onSubmit, placeHolder }) {
         
         e.preventDefault()
         if (searchInput.trim() === "") {
-            alert('Input something!')
+            toast.error('Input something!')
             return              
         }
        onSubmit(searchInput);

@@ -64,7 +64,7 @@ export default function MoviesPage() {
         })
         .finally(setStatus('success'));
     }
-  }, [page]);
+  }, [allQUery, page]);
 
   return (
     <>

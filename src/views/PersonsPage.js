@@ -24,20 +24,22 @@ export default function HomePage() {
     setQuery(query);
   };
   const onBackClick = () => {
-    history.push(-1);
+    history.push(location?.state?.from?.location ?? '/');
   };
   const handleClickBM = () => {
     setPage(prev => prev + 1);
   };
 
   useEffect(() => {
-    tmdbApi.getPersonsTrend().then(r => {
-      const sortedResult = [...r.results].sort((a, b) =>
-        a.popularity < b.popularity ? 1 : -1,
-      );
-      setPersons(sortedResult);
-    });
-  }, []);
+    if (!urlQuery) {
+      tmdbApi.getPersonsTrend().then(r => {
+        const sortedResult = [...r.results].sort((a, b) =>
+          a.popularity < b.popularity ? 1 : -1,
+        );
+        setPersons(sortedResult);
+      });
+    }
+  }, [urlQuery]);
 
   useEffect(() => {
     if (!allQUery) {
@@ -69,14 +71,21 @@ export default function HomePage() {
     }
   }, [allQUery, page]);
 
-  console.log(persons);
-
   return (
     <>
       {status === 'pending' && <Loader />}
       <Searchbar onSubmit={onSubmit} placeHolder={'Search actors'} />
-      <h1 className="pageTitle">Trending persons</h1>
-      {persons && <GalleryPerson results={persons} />}
+      <div className="container">
+        <button className="btn_back" type="button" onClick={onBackClick}>
+          {location?.state?.from?.label ?? 'Home'}{' '}
+        </button>
+
+        <h1 className="pageTitle">Trending persons</h1>
+        {persons && <GalleryPerson results={persons} />}
+        {persons && persons.length > 15 && (
+          <LoadMoreBtn handleClickBM={handleClickBM} />
+        )}
+      </div>
     </>
   );
 }

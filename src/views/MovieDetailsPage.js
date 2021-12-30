@@ -28,7 +28,7 @@ export default function MovieDetailsPage() {
   const onBackClick = () => {
     history.push(location?.state?.from?.location ?? '/movies');
   };
-  console.log(location);
+
   return (
     <div className="container">
       <button className="btn_back" type="button" onClick={onBackClick}>

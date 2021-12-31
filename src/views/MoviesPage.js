@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import Loader from '../components/Loader/Loader';
-
+import toast from 'react-hot-toast';
 import Gallery from '../components/Gallery/Gallery';
 
 import * as tmdbApi from '../services/tmdbAPI';
@@ -36,13 +36,16 @@ export default function MoviesPage() {
     setPage(1);
     tmdbApi
       .getInfoByQuerry(allQUery)
-      .then(r =>
+      .then(r => {
+        if (r.results.length === 0) {
+          toast.error('Nothing found');
+        }
         setResults(
           r.results.filter(
             el => el.media_type === 'movie' || el.media_type === 'tv',
           ),
-        ),
-      )
+        );
+      })
       .finally(setStatus('success'));
   }, [allQUery]);
 
@@ -57,6 +60,7 @@ export default function MoviesPage() {
               el => el.media_type === 'movie' || el.media_type === 'tv',
             ),
           ]);
+
           window.scrollTo({
             top: document.documentElement.scrollHeight,
             behavior: 'smooth',

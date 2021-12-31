@@ -18,14 +18,14 @@ export default function PersonDetailsPage() {
   }, [personId]);
 
   const onBackClick = () => {
-    history.push(location?.state?.from?.location ?? '/movies');
+    console.log(location);
+    history.push(location?.state?.from?.location.pathname ?? '/persons');
   };
-  console.log(person);
 
   return (
     <div className="container">
       <button className="btn_back" type="button" onClick={onBackClick}>
-        {location?.state?.from?.label ?? 'Back to movies search'}{' '}
+        {location?.state?.from?.label ?? 'Back to persons'}{' '}
       </button>
       {person && <PersonDetails person={person} />}
     </div>

@@ -26,7 +26,7 @@ export default function MovieDetailsPage() {
   }, [movieId, type]);
 
   const onBackClick = () => {
-    history.push(location?.state?.from?.location ?? '/movies');
+    history.push(location?.state?.from?.location.pathname ?? '/movies');
   };
 
   return (
@@ -41,7 +41,7 @@ export default function MovieDetailsPage() {
           pathname: `${url}/cast`,
           state: {
             from: {
-              location: location.state.from.location,
+              location: location?.state?.from.location,
               label: 'Back to results',
             },
           },
@@ -57,7 +57,7 @@ export default function MovieDetailsPage() {
           pathname: `${url}/reviews`,
           state: {
             from: {
-              location: location.state.from.location,
+              location: location?.state?.from.location,
               label: 'Back to results',
             },
           },

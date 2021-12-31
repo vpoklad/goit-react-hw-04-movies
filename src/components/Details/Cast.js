@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import s from './MovieDetails.module.css';
 import * as tmdbApi from '../../services/tmdbAPI';
@@ -8,6 +8,7 @@ export default function Cast() {
   const [cast, setCast] = useState([]);
   const [status, setStatus] = useState('pending');
   const { type, movieId } = useParams();
+  const location = useLocation();
 
   useEffect(() => {
     tmdbApi
@@ -25,22 +26,35 @@ export default function Cast() {
       return <p>No cast information found</p>;
     }
 
+    console.log(location);
     return (
       <ul className={s.cast}>
         {cast.map(el => {
           return (
             <li key={el.id}>
-              <img
-                className={s.castImg}
-                src={
-                  el.profile_path
-                    ? `https://image.tmdb.org/t/p/w185/${el.profile_path}`
-                    : placeholder
-                }
-                alt={el.name}
-              />
-              <span className={s.castName}>{el.name} </span> as
-              <p> {el.character}</p>
+              <Link
+                to={{
+                  pathname: `/persons/${el.id}`,
+                  state: {
+                    from: {
+                      location,
+                      label: 'Back to cast',
+                    },
+                  },
+                }}
+              >
+                <img
+                  className={s.castImg}
+                  src={
+                    el.profile_path
+                      ? `https://image.tmdb.org/t/p/w185/${el.profile_path}`
+                      : placeholder
+                  }
+                  alt={el.name}
+                />
+                <span className={s.castName}>{el.name} </span> as
+                <p> {el.character}</p>
+              </Link>
             </li>
           );
         })}

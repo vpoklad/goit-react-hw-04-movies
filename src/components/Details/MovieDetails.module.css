@@ -49,15 +49,25 @@
   grid-template-columns: repeat(auto-fill, minmax(258px, 1fr));
   grid-gap: 16px;
 }
+.link {
+  text-decoration: none;
+}
+.link:hover .castImg {
+  transform: scale(1.03);
+}
 .castImg {
   max-width: 185px;
   margin: 0 auto;
   margin-bottom: 10px;
+  transition: all 250ms ease;
+}
+.castMeta {
+  color: #000;
+  font-size: 16px;
+  font-weight: bold;
 }
 .castName {
   color: #ff3d00;
-  font-size: 16px;
-  font-weight: bold;
 }
 .reviewItem {
   margin-bottom: 10px;

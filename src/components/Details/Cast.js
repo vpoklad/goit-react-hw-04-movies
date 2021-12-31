@@ -13,7 +13,13 @@ export default function Cast() {
   useEffect(() => {
     tmdbApi
       .getCreditsById(type, movieId)
-      .then(r => setCast(r.cast))
+      .then(r => {
+        setCast(r.cast);
+        window.scrollTo({
+          top: document.documentElement.scrollHeight,
+          behavior: 'smooth',
+        });
+      })
       .finally(setStatus('success'));
   }, [movieId, type]);
 
@@ -26,13 +32,13 @@ export default function Cast() {
       return <p>No cast information found</p>;
     }
 
-    console.log(location);
     return (
       <ul className={s.cast}>
         {cast.map(el => {
           return (
             <li key={el.id}>
               <Link
+                className={s.link}
                 to={{
                   pathname: `/persons/${el.id}`,
                   state: {
@@ -52,8 +58,10 @@ export default function Cast() {
                   }
                   alt={el.name}
                 />
-                <span className={s.castName}>{el.name} </span> as
-                <p> {el.character}</p>
+                <div className={s.castMeta}>
+                  <span className={s.castName}>{el.name} </span> as
+                  <p> {el.character}</p>
+                </div>
               </Link>
             </li>
           );

@@ -23,7 +23,10 @@ export default function Searchbar ({ onSubmit, placeHolder }) {
             return              
         }
        onSubmit(searchInput);
-       setSearchInput('');
+     setSearchInput('');
+     if(e.key === 'Enter'){
+        e.target.blur();
+    }
     }
 
     

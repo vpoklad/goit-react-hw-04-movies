@@ -6,6 +6,7 @@ import GalleryPerson from '../components/Gallery/GalleryPerson';
 import * as tmdbApi from '../services/tmdbAPI';
 import Searchbar from '../components/Searchbar/Searchbar';
 import LoadMoreBtn from '../components/Buttons/LoadMoreBtn';
+import toast from 'react-hot-toast';
 
 export default function HomePage() {
   const history = useHistory();
@@ -49,7 +50,13 @@ export default function HomePage() {
     setPage(1);
     tmdbApi
       .getInfoByQuerry(allQUery)
-      .then(r => setPersons(r.results.filter(el => el.media_type === 'person')))
+      .then(r => {
+        const filteredResult = r.results.filter(
+          el => el.media_type === 'person',
+        );
+        if (filteredResult.length === 0) toast.error('Nothing found');
+        setPersons(filteredResult);
+      })
       .finally(setStatus('success'));
   }, [allQUery]);
 
@@ -77,15 +84,17 @@ export default function HomePage() {
       <Searchbar onSubmit={onSubmit} placeHolder={'Search actors'} />
       <div className="container">
         <button className="btn_back" type="button" onClick={onBackClick}>
-          {location?.state?.from?.label ?? 'Home'}{' '}
+          {location?.state?.from?.label ?? 'Home'}
         </button>
 
-        <h1 className="pageTitle">Trending persons</h1>
-        {persons && <GalleryPerson results={persons} />}
-        {persons && persons.length > 15 && (
-          <LoadMoreBtn handleClickBM={handleClickBM} />
+        {persons && persons.length > 1 && (
+          <h1 className="pageTitle">Trending persons</h1>
         )}
       </div>
+      {persons && <GalleryPerson results={persons} />}
+      {persons && persons.length > 15 && (
+        <LoadMoreBtn handleClickBM={handleClickBM} />
+      )}
     </>
   );
 }

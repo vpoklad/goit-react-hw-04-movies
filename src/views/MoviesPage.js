@@ -60,7 +60,7 @@ export default function MoviesPage() {
               el => el.media_type === 'movie' || el.media_type === 'tv',
             ),
           ]);
-
+          
           window.scrollTo({
             top: document.documentElement.scrollHeight,
             behavior: 'smooth',

@@ -6,6 +6,7 @@ import GalleryPerson from '../components/Gallery/GalleryPerson';
 import * as tmdbApi from '../services/tmdbAPI';
 import Searchbar from '../components/Searchbar/Searchbar';
 import LoadMoreBtn from '../components/Buttons/LoadMoreBtn';
+import ButtonBack from '../components/Buttons/ButtonBack';
 import toast from 'react-hot-toast';
 
 export default function HomePage() {
@@ -83,9 +84,7 @@ export default function HomePage() {
       {status === 'pending' && <Loader />}
       <Searchbar onSubmit={onSubmit} placeHolder={'Search actors'} />
       <div className="container">
-        <button className="btn_back" type="button" onClick={onBackClick}>
-          {location?.state?.from?.label ?? 'Home'}
-        </button>
+        <ButtonBack location={location} onBackClick={onBackClick} />
 
         {persons && persons.length > 1 && (
           <h1 className="pageTitle">Trending persons</h1>

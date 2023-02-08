@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { useRouteMatch } from 'react-router-dom';
 import s from './Searchbar.module.css';
 import { toast } from 'react-hot-toast';
 
 export default function Searchbar({ onSubmit, placeHolder }) {
   const [searchInput, setSearchInput] = useState('');
+  const { url } = useRouteMatch();
 
   const handlerChange = e => {
     setSearchInput(e.target.value);
@@ -33,7 +35,7 @@ export default function Searchbar({ onSubmit, placeHolder }) {
           value={searchInput}
           type="search"
           autoComplete="on"
-          autoFocus
+          autoFocus={url === '/movies'}
           placeholder={placeHolder}
           onChange={handlerChange}
         />

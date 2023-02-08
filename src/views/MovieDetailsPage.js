@@ -14,6 +14,7 @@ import MovieDetails from '../components/Details/MovieDetails';
 
 import Cast from '../components/Details/Cast';
 import Review from '../components/Details/Review';
+import ButtonBack from '../components/Buttons/ButtonBack';
 
 export default function MovieDetailsPage() {
   const [movie, setMovie] = useState(null);
@@ -31,9 +32,8 @@ export default function MovieDetailsPage() {
 
   return (
     <div className="container">
-      <button className="btn_back" type="button" onClick={onBackClick}>
-        {location?.state?.from?.label ?? 'Back to movies search'}{' '}
-      </button>
+      <ButtonBack onBackClick={onBackClick} location={location} />
+
       {movie && <MovieDetails movie={movie} type={type} />}
       <NavLink
         exact

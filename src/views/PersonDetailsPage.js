@@ -3,6 +3,7 @@ import * as tmdbApi from '../services/tmdbAPI';
 import { useEffect, useState } from 'react';
 
 import PersonDetails from '../components/Details/PersonDetails';
+import ButtonBack from '../components/Buttons/ButtonBack';
 
 // import Cast from '../components/MovieDetails/Cast';
 // import Review from '../components/MovieDetails/Review';
@@ -18,15 +19,13 @@ export default function PersonDetailsPage() {
   }, [personId]);
 
   const onBackClick = () => {
-    console.log(location);
     history.push(location?.state?.from?.location.pathname ?? '/persons');
   };
 
   return (
     <div className="container">
-      <button className="btn_back" type="button" onClick={onBackClick}>
-        {location?.state?.from?.label ?? 'Back to persons'}{' '}
-      </button>
+      <ButtonBack location={location} onBackClick={onBackClick} />
+
       {person && <PersonDetails person={person} />}
     </div>
   );

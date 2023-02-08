@@ -15,8 +15,8 @@ export default function Cast() {
       .getCreditsById(type, movieId)
       .then(r => {
         setCast(r.cast);
-        window.scrollTo({
-          top: document.documentElement.scrollHeight,
+        document.querySelector('#cast-list').scrollIntoView({
+          top: 100,
           behavior: 'smooth',
         });
       })
@@ -33,7 +33,7 @@ export default function Cast() {
     }
 
     return (
-      <ul className={s.cast}>
+      <ul className={s.cast} id="cast-list">
         {cast.map(el => {
           return (
             <li key={el.id}>

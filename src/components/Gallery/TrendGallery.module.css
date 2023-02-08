@@ -27,24 +27,31 @@
   object-fit: cover;
 }
 
-.galleryItem:hover {
-  transform: scale(1.03);
-  cursor: pointer;
-}
-.galleryItem:hover .galleryItemImg {
-  filter: blur(5px);
-}
-.galleryItem:hover .metatext {
-  opacity: 1;
+@media screen and (min-width: 1200px){
+  .galleryItem:hover {
+      transform: scale(1.03);
+      cursor: pointer;
+    }
+  
+    .galleryItem:hover .galleryItemImg {
+      filter: blur(5px);
+    }
+  
+    .galleryItem:hover .metatext {
+      opacity: 1;
+    }
 }
 
+
+
 .metatext {
+  text-align: center;
   text-shadow: 1px 1px 2px black;
   position: absolute;
   z-index: 5;
   top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   font-size: 26px;
   color: aliceblue;
   opacity: 0;
@@ -64,5 +71,4 @@
 .galleryItem:hover .personMetaItem {
   color: coral;
 }
-.personMetaItem {
-}
+

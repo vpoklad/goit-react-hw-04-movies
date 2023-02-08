@@ -33,7 +33,6 @@ export default function Searchbar({ onSubmit, placeHolder }) {
           value={searchInput}
           type="search"
           autoComplete="on"
-          autoFocus
           placeholder={placeHolder}
           onChange={handlerChange}
         />

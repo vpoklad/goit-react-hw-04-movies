@@ -10,8 +10,6 @@ import { useEffect, useState } from 'react';
 import s from '../components/Navbar/Navbar.module.css';
 
 import MovieDetails from '../components/Details/MovieDetails';
-import Cast from '../components/Details/Cast';
-import Review from '../components/Details/Review';
 
 import ButtonBack from '../components/Buttons/ButtonBack';
 
@@ -19,7 +17,7 @@ export default function MovieDetailsPage() {
   const [movie, setMovie] = useState(null);
   const { type, movieId } = useParams();
   const navigate = useNavigate();
-  const { location, pathname } = useLocation();
+  const { location } = useLocation();
 
   useEffect(() => {
     tmdbApi.getInfoById(type, movieId).then(result => setMovie(result));

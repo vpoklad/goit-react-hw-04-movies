@@ -1,5 +1,5 @@
 import { useParams, Link, useLocation } from 'react-router-dom';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import s from './MovieDetails.module.css';
 import * as tmdbApi from '../../services/tmdbAPI';
 import placeholder from '../../img/portrait_placeholder.jpg';

@@ -9,9 +9,11 @@
   margin: 0 auto;
   max-width: 342px;
 }
+
+
 .meta {
   color: #fff;
-  width: calc(80% - 15px);
+  width: calc(100% - 15px);
 }
 
 

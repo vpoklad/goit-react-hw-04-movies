@@ -23,13 +23,15 @@
 .tv {
   position: absolute;
   z-index: 5;
-  top: 0;
+  top: 5px;
   right: 10px;
   font-size: 24px;
-  color: aliceblue;
-  text-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
-    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
-
+  color: transparent;
+    background: #ffff;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    text-shadow: 0px 3px 3px rgba(255, 255, 255, 0.5);
 
   
 }

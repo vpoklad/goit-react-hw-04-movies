@@ -1,33 +1,32 @@
 import {
+  Outlet,
   useParams,
-  useHistory,
+  useNavigate,
   useLocation,
   NavLink,
-  Route,
-  useRouteMatch,
 } from 'react-router-dom';
 import * as tmdbApi from '../services/tmdbAPI';
 import { useEffect, useState } from 'react';
 import s from '../components/Navbar/Navbar.module.css';
 
 import MovieDetails from '../components/Details/MovieDetails';
-
 import Cast from '../components/Details/Cast';
 import Review from '../components/Details/Review';
+
 import ButtonBack from '../components/Buttons/ButtonBack';
 
 export default function MovieDetailsPage() {
   const [movie, setMovie] = useState(null);
   const { type, movieId } = useParams();
-  const history = useHistory();
-  const location = useLocation();
-  const { url, path } = useRouteMatch();
+  const navigate = useNavigate();
+  const { location, pathname } = useLocation();
+
   useEffect(() => {
     tmdbApi.getInfoById(type, movieId).then(result => setMovie(result));
   }, [movieId, type]);
 
   const onBackClick = () => {
-    history.push(location?.state?.from?.location.pathname ?? '/movies');
+    navigate(-1);
   };
 
   return (
@@ -36,9 +35,8 @@ export default function MovieDetailsPage() {
 
       {movie && <MovieDetails movie={movie} type={type} />}
       <NavLink
-        exact
         to={{
-          pathname: `${url}/cast`,
+          pathname: 'cast',
           state: {
             from: {
               location: location?.state?.from.location,
@@ -46,15 +44,13 @@ export default function MovieDetailsPage() {
             },
           },
         }}
-        className={s.link}
-        activeClassName={s.activeLink}
+        className={({ isActive }) => (isActive ? s.activeLink : s.link)}
       >
         Cast
       </NavLink>
       <NavLink
-        exact
         to={{
-          pathname: `${url}/reviews`,
+          pathname: 'reviews',
           state: {
             from: {
               location: location?.state?.from.location,
@@ -62,18 +58,11 @@ export default function MovieDetailsPage() {
             },
           },
         }}
-        className={s.link}
-        activeClassName={s.activeLink}
+        className={({ isActive }) => (isActive ? s.activeLink : s.link)}
       >
         Reviews
       </NavLink>
-
-      <Route path={`${path}/cast`}>
-        <Cast />
-      </Route>
-      <Route path={`${path}/reviews`}>
-        <Review />
-      </Route>
+      <Outlet />
     </div>
   );
 }

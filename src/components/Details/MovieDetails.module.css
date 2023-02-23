@@ -10,8 +10,17 @@
   max-width: 342px;
 }
 .meta {
+  color: #fff;
   width: calc(80% - 15px);
 }
+
+
+
+.movie_type, .votes {
+  color: #ff3d00;
+}
+
+
 .link {
   color: #8b8b8b;
   text-decoration: none;
@@ -62,14 +71,24 @@
   transition: all 250ms ease;
 }
 .castMeta {
-  color: #000;
+  color: #fff;
   font-size: 16px;
   font-weight: bold;
 }
-.castName {
+.castName, .anchor {
   color: #ff3d00;
 }
+.anchor {
+  text-decoration: underline;
+  cursor: pointer;
+  transition: 300ms color ease;
+}
+.anchor:hover {
+  color: #fff;
+}
+
 .reviewItem {
+  color: #fff;
   margin-bottom: 10px;
 }
 .reviewAuthor {

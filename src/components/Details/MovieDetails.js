@@ -19,8 +19,12 @@ export default function MovieDetails({ movie, type }) {
       </div>
 
       <div className={s.meta}>
-        {movie.title ? <h1>{movie.title}</h1> : <h1>{movie.original_name}</h1>}
-        <h2>{type}</h2>
+        {movie.title ? (
+          <h1 className={s.title}>{movie.title}</h1>
+        ) : (
+          <h1 className={s.title}>{movie.original_name}</h1>
+        )}
+        <h2 className={s.movie_type}>{type}</h2>
         {movie.release_date && <p>Release: {movie.release_date}</p>}
         {movie.first_air_date && <p>first air date: {movie.first_air_date}</p>}
 
@@ -40,7 +44,9 @@ export default function MovieDetails({ movie, type }) {
           </>
         )}
 
-        {movie.vote_average > 0 && <h3>Vote average: {movie.vote_average}</h3>}
+        {movie.vote_average > 0 && (
+          <h3 className={s.votes}>Vote average: {movie.vote_average}</h3>
+        )}
       </div>
     </div>
   );

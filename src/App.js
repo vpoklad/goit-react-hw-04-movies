@@ -1,14 +1,13 @@
 // import './App.css';
 
 import { lazy, Suspense } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import { Toaster } from 'react-hot-toast';
-import Navbar from './components/Navbar/Navbar';
-import Loader from './components/Loader/Loader';
-import ToTopButton from './components/Buttons/ToTopButton';
+import { Routes, Route } from 'react-router-dom';
 
-// import HomePage from './views/HomePage';
-// import MoviesPage from './views/MoviesPage';
+import Loader from './components/Loader/Loader';
+
+import Layout from './views/Layout';
+import Cast from './components/Details/Cast';
+import Review from './components/Details/Review';
 
 const HomePage = lazy(() =>
   import('./views/HomePage' /* webpackChunkName: "home-page" */),
@@ -29,19 +28,22 @@ const PersonDetailsPage = lazy(() =>
 function App() {
   return (
     <>
-      <Toaster />
-      <Navbar />
       <Suspense fallback={<Loader />}>
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/movies/:type/:movieId" component={MovieDetailsPage} />
-          <Route path="/movies" component={MoviesPage} />
-          <Route path="/persons/:personId" component={PersonDetailsPage} />
-          <Route path="/persons" component={PersonsPage} />
-          <Redirect to="/" />
-        </Switch>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+            <Route path="movies/:type/:movieId" element={<MovieDetailsPage />}>
+              <Route path="cast" element={<Cast />} />
+              <Route path="reviews" element={<Review />} />
+            </Route>
+
+            <Route path="movies" element={<MoviesPage />} />
+            <Route path="persons/:personId" element={<PersonDetailsPage />} />
+            <Route path="persons" element={<PersonsPage />} />
+            <Route path="*" element={<HomePage />} />
+          </Route>
+        </Routes>
       </Suspense>
-      <ToTopButton />
     </>
   );
 }

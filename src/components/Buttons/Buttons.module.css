@@ -27,13 +27,21 @@
 }
 
 .totop {
+
   position: fixed;
   bottom: 150px;
   right: 50px;
-  width: 30px;
-  height: 30px;
+  width: 45px;
+  height: 45px;
   cursor: pointer;
+ 
 }
+@media (max-width: 700px) {
+  .totop{
+    bottom: 30px;
+      right: 30px;}
+}
+
 
 .btn_back {
   align-items: center;

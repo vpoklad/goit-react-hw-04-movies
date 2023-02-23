@@ -10,7 +10,7 @@ export default function TrendGalleryItem({ item }) {
   return (
     <Link
       to={{
-        pathname: `persons/${item.id}`,
+        pathname: `${item.id}`,
         state: {
           from: {
             location,

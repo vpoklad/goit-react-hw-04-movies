@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import Loader from '../components/Loader/Loader';
 import GalleryPerson from '../components/Gallery/GalleryPerson';
@@ -10,23 +10,23 @@ import ButtonBack from '../components/Buttons/ButtonBack';
 import toast from 'react-hot-toast';
 
 export default function HomePage() {
-  const history = useHistory();
   const location = useLocation();
   const [persons, setPersons] = useState(null);
   const [status, setStatus] = useState('intial');
-  const [query, setQuery] = useState(null);
   const [page, setPage] = useState(1);
+  const [query, setQuery] = useState(null);
   const [urlQuery] = useState(() =>
     new URLSearchParams(location.search).get('query'),
   );
 
+  const navigate = useNavigate();
   const allQUery = query || urlQuery;
   const onSubmit = query => {
-    history.push({ ...location, search: `query=${query}` });
+    // history.push({ ...location, search: `query=${query}` });
     setQuery(query);
   };
   const onBackClick = () => {
-    history.push(location?.state?.from?.location ?? '/');
+    navigate(-1);
   };
   const handleClickBM = () => {
     setPage(prev => prev + 1);
@@ -83,13 +83,13 @@ export default function HomePage() {
     <>
       {status === 'pending' && <Loader />}
       <Searchbar onSubmit={onSubmit} placeHolder={'Search actors'} />
-      <div className="container">
-        <ButtonBack location={location} onBackClick={onBackClick} />
 
-        {persons && persons.length > 1 && (
-          <h1 className="pageTitle">Trending persons</h1>
-        )}
-      </div>
+      <ButtonBack location={location} onBackClick={onBackClick} />
+
+      {persons && persons.length > 1 && (
+        <h1 className="pageTitle">Trending persons</h1>
+      )}
+
       {persons && <GalleryPerson results={persons} />}
       {persons && persons.length > 15 && (
         <LoadMoreBtn handleClickBM={handleClickBM} />

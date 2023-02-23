@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { useRouteMatch } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import s from './Searchbar.module.css';
 import { toast } from 'react-hot-toast';
 
 export default function Searchbar({ onSubmit, placeHolder }) {
   const [searchInput, setSearchInput] = useState('');
-  const { url } = useRouteMatch();
+  const { pathname } = useLocation();
 
   const handlerChange = e => {
     setSearchInput(e.target.value);
@@ -24,7 +24,7 @@ export default function Searchbar({ onSubmit, placeHolder }) {
   };
 
   return (
-    <header className={s.Searchbar}>
+    <div className={s.Searchbar}>
       <form className={s.SearchForm} onSubmit={handleSubmit}>
         <button type="submit" className={s.SearchFormButton}>
           <span className={s.SearchFormButtonLabel}>Search</span>
@@ -35,12 +35,12 @@ export default function Searchbar({ onSubmit, placeHolder }) {
           value={searchInput}
           type="search"
           autoComplete="on"
-          autoFocus={url === '/movies'}
+          autoFocus={pathname === '/movies'}
           placeholder={placeHolder}
           onChange={handlerChange}
         />
       </form>
-    </header>
+    </div>
   );
 }
 

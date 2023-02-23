@@ -11,7 +11,7 @@ export default function TrendGalleryItem({ item }) {
     <li className={s.galleryItem}>
       <Link
         to={{
-          pathname: `movies/${item.media_type}/${item.id}`,
+          pathname: `/movies/${item.media_type}/${item.id}`,
           state: {
             from: {
               location,
@@ -20,8 +20,9 @@ export default function TrendGalleryItem({ item }) {
           },
         }}
       >
-        <p className={s.metatext}>Rating: {item.vote_average.toFixed(1)}/10</p>
+        {item.media_type === 'tv' && <div className={s.tv}>TV</div>}
 
+        <p className={s.metatext}>Rating: {item.vote_average.toFixed(1)}/10</p>
         <img
           className={s.galleryItemImg}
           src={

@@ -1,4 +1,4 @@
-import { useParams, useHistory, useLocation } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import * as tmdbApi from '../services/tmdbAPI';
 import { useEffect, useState } from 'react';
 
@@ -11,7 +11,7 @@ import ButtonBack from '../components/Buttons/ButtonBack';
 export default function PersonDetailsPage() {
   const [person, setPerson] = useState(null);
   const { personId } = useParams();
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function PersonDetailsPage() {
   }, [personId]);
 
   const onBackClick = () => {
-    history.push(location?.state?.from?.location.pathname ?? '/persons');
+    navigate(-1);
   };
 
   return (

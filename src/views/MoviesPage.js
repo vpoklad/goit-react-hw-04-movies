@@ -1,32 +1,30 @@
-import { useEffect, useState } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useEffect, useState, useRef } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import Loader from '../components/Loader/Loader';
 import toast from 'react-hot-toast';
 import Gallery from '../components/Gallery/Gallery';
-
 import * as tmdbApi from '../services/tmdbAPI';
 import Searchbar from '../components/Searchbar/Searchbar';
 import LoadMoreBtn from '../components/Buttons/LoadMoreBtn';
 
 export default function MoviesPage() {
-  const history = useHistory();
-  const location = useLocation();
+  const [urlQuery, setUrlQuery] = useSearchParams();
   const [results, setResults] = useState([]);
   const [query, setQuery] = useState(null);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(() => urlQuery.get('page') || 1);
   const [status, setStatus] = useState('intial');
-  const [urlQuery] = useState(() =>
-    new URLSearchParams(location.search).get('query'),
-  );
 
-  const allQUery = query || urlQuery;
+  const allQUery = query || urlQuery.get('query');
 
   const onSubmit = query => {
-    history.push({ ...location, search: `query=${query}` });
+    setUrlQuery({ query });
     setQuery(query);
   };
   const handleClickBM = () => {
-    setPage(prev => prev + 1);
+    console.log(page);
+    setPage(page + 1);
+    console.log(page);
+    setUrlQuery({ query, page: +page + 1 });
   };
   useEffect(() => {
     if (!allQUery) {
@@ -60,7 +58,7 @@ export default function MoviesPage() {
               el => el.media_type === 'movie' || el.media_type === 'tv',
             ),
           ]);
-          
+
           window.scrollTo({
             top: document.documentElement.scrollHeight,
             behavior: 'smooth',
@@ -74,10 +72,9 @@ export default function MoviesPage() {
     <>
       {status === 'pending' && <Loader />}
       <Searchbar onSubmit={onSubmit} placeHolder={'Search movies & TV-shows'} />
-      <div className="container">
-        {results && <Gallery results={results} />}
-        {results.length > 15 && <LoadMoreBtn handleClickBM={handleClickBM} />}
-      </div>
+
+      {results.length > 0 && <Gallery results={results} />}
+      {results.length > 15 && <LoadMoreBtn handleClickBM={handleClickBM} />}
     </>
   );
 }

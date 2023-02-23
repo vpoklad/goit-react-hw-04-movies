@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-// import Loader from '../components/Loader/Loader'
 
 import Gallery from '../components/Gallery/Gallery';
 import * as tmdbApi from '../services/tmdbAPI';
@@ -10,14 +9,13 @@ export default function HomePage() {
 
   useEffect(() => {
     tmdbApi.getTrend().then(r => {
-
-      const sortedResult = [...r.results].sort((a, b) => a.vote_average < b.vote_average ? 1 : -1);
+      const sortedResult = [...r.results].sort((a, b) =>
+        a.vote_average < b.vote_average ? 1 : -1,
+      );
       setTrends(sortedResult);
-    })
-      
+    });
   }, []);
-  
-  
+
   return (
     <>
       <h1 className="pageTitle">TOP 20 this week trends</h1>

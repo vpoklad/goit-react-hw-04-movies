@@ -9,17 +9,29 @@
   list-style: none;
   margin-left: auto;
   margin-right: auto;
-} /*
+} 
 
- * Стили компонента ImageGalleryItem
- */
+
 .galleryItem {
   position: relative;
   overflow: hidden;
-  border-radius: 3px;
+  border-radius: 6px;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+}
+.tv {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  right: 10px;
+  font-size: 24px;
+  color: aliceblue;
+  text-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+
+
+  
 }
 
 .galleryItemImg {

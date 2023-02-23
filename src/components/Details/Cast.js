@@ -1,5 +1,5 @@
 import { useParams, Link, useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import s from './MovieDetails.module.css';
 import * as tmdbApi from '../../services/tmdbAPI';
 import placeholder from '../../img/portrait_placeholder.jpg';
@@ -15,12 +15,10 @@ export default function Cast() {
       .getCreditsById(type, movieId)
       .then(r => {
         setCast(r.cast);
-        document.querySelector('#cast-list').scrollIntoView({
-          top: 100,
-          behavior: 'smooth',
-        });
       })
-      .finally(setStatus('success'));
+      .finally(() => {
+        setStatus('success');
+      });
   }, [movieId, type]);
 
   if (status === 'pending') {
@@ -33,7 +31,7 @@ export default function Cast() {
     }
 
     return (
-      <ul className={s.cast} id="cast-list">
+      <ul className={s.cast}>
         {cast.map(el => {
           return (
             <li key={el.id}>

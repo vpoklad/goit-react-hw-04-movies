@@ -83,17 +83,18 @@ export default function HomePage() {
     <>
       {status === 'pending' && <Loader />}
       <Searchbar onSubmit={onSubmit} placeHolder={'Search actors'} />
+      <div className="container" style={{ paddingTop: 0 }}>
+        <ButtonBack location={location} onBackClick={onBackClick} />
 
-      <ButtonBack location={location} onBackClick={onBackClick} />
+        {persons && persons.length > 1 && (
+          <h1 className="pageTitle">Trending persons</h1>
+        )}
 
-      {persons && persons.length > 1 && (
-        <h1 className="pageTitle">Trending persons</h1>
-      )}
-
-      {persons && <GalleryPerson results={persons} />}
-      {persons && persons.length > 15 && (
-        <LoadMoreBtn handleClickBM={handleClickBM} />
-      )}
+        {persons && <GalleryPerson results={persons} />}
+        {persons && persons.length > 15 && (
+          <LoadMoreBtn handleClickBM={handleClickBM} />
+        )}
+      </div>
     </>
   );
 }

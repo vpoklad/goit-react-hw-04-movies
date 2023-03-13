@@ -1,8 +1,5 @@
 .Searchbar {
-  top: 0;
-  left: 0;
-  position: relative;
-  z-index: 1100;
+  margin-top: 65px;
   display: flex;
   justify-content: center;
   align-items: center;

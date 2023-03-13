@@ -1,9 +1,11 @@
-html{
+html {
   scroll-behavior: smooth;
   box-sizing: content-box;
 }
 
-*, ::before, ::after {
+*,
+::before,
+::after {
   box-sizing: inherit;
   /* outline: 1px solid tomato; */
 }
@@ -57,12 +59,18 @@ img {
 }
 
 .container {
-  padding-top: 80px;
+  padding-top: 67px;
   max-width: 100%;
-  padding-left: 32px;
-  padding-right: 32px;
+  padding-left: 16px;
+  padding-right: 16px;
 
   margin: 0 auto;
+}
+@media (min-width: 767px) {
+  .container {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
 }
 @media screen and (min-width: 1400px) {
   .container {
@@ -70,12 +78,12 @@ img {
   }
 }
 .pageTitle {
+  padding-top: 65px;
   color: #f700a8;
   text-align: center;
   font-size: 40px;
   margin-bottom: 20px;
 }
-
 
 /* Loader */
 

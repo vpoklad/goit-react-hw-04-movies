@@ -10,18 +10,15 @@
   max-width: 342px;
 }
 
-
 .meta {
   color: #fff;
   width: calc(100% - 15px);
 }
 
-
-
-.movie_type, .votes {
+.movie_type,
+.votes {
   color: #ff3d00;
 }
-
 
 .link {
   color: #8b8b8b;
@@ -52,12 +49,12 @@
 .cast {
   text-align: center;
   font-weight: bold;
-  font-style: bold;
+
   list-style: none;
   padding: 0;
   display: grid;
-  max-width: calc(100vw - 96px);
-  grid-template-columns: repeat(auto-fill, minmax(258px, 1fr));
+
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   grid-gap: 16px;
 }
 .link {
@@ -77,7 +74,8 @@
   font-size: 16px;
   font-weight: bold;
 }
-.castName, .anchor {
+.castName,
+.anchor {
   color: #ff3d00;
 }
 .anchor {

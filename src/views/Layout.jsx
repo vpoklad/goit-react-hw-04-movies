@@ -7,12 +7,13 @@ export default function Layout({ children }) {
   return (
     <>
       <Toaster />
-      <header>
+      <header style={{position: "fixed", zIndex:10, top:0, left:0, width:"100%"}}>
         <Navbar />
       </header>
-      <div className="container">
+
+      
         <Outlet>{children}</Outlet>
-      </div>
+      
       <ToTopButton />
     </>
   );
